@@ -1,0 +1,21 @@
+.aboutus-container {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 32px;
+    align-items: center; 
+}
+
+.aboutus-lore-container {
+    width: 50%; 
+    text-align: justify;
+}
+
+.family_Kim-container {
+    width: 50%; 
+}
+
+.family_Kim-container img {
+    width: 90%; 
+    height: auto; 
+}

@@ -1,0 +1,30 @@
+div.homepage-container{
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 32px;
+}
+
+div.homepage-container div.image-container{
+    width: 60%;
+}
+
+div.homepage-container div.image-container img {
+    width: 100%;
+    object-fit: fill;
+}
+
+div.homepage-lore-container{
+    text-align: justify;
+    width: 40%;
+}
+
+div.homepage-lore-container p{
+    margin: 0;
+    padding: 0;
+}
+
+div.image_dragon-container{
+    margin-top: 50px; 
+    margin-left: 100px;
+}
