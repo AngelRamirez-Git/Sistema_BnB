@@ -1,6 +1,9 @@
 import  { Handler, Request, Response} from 'express';
 import { UserMongo, UserSchema } from '../../models/user'
 import { RoomMongo } from '../../models/room'
+import { createAccessToken } from '../../libs/jwt';
+import * as bcrypt from 'bcrypt-ts';
+
 
 import  util from 'util';
 
@@ -9,33 +12,61 @@ export const getUsers: Handler = async (req: Request, res: Response) => {
     return res.status(200).send(users);
 }
 
-export const createUser: Handler = async (req: Request, res: Response) => {
+export const registerUser: Handler = async (req: Request, res: Response) => {
     try {
         const existingUser = await UserMongo.findOne({ email: req.body.email });
         if (existingUser) {
             return res.status(400).send('El correo electrónico ya está registrado');
         }
+        const passwordHash = await bcrypt.hash(req.body.password, 10);
+
         
-        const user = new UserMongo(req.body);
-        await user.save();
-        return res.status(201).send(user);
+        const user = new UserMongo({
+            email: req.body.email,
+            username: req.body.username,
+            password: passwordHash,
+        });
+
+        const userSaved = await user.save();
+
+        const token = await createAccessToken({ id: userSaved._id });
+
+        res.cookie('token', token);
+        
+        return res.status(201).send(userSaved);
     } catch (error) {
         return res.status(500).send(`Error en el servidor ${error}`);
     }
 };
 
-export const getUserByEmail: Handler = async (req: Request, res: Response) => {
-    const email = req.params.email;
+export const loginUser: Handler = async (req: Request, res: Response) => {
+    const email: string = req.body.email;
+    const password: string = req.body.password
+
     try {
        const user = await UserMongo.findOne({ email: email });
-        if (user) {
-            return res.status(200).send(user);
-        } else {
-            return res.status(404).send('Usuario no encontrado');
-        }
+
+       if(!user) return res.status(404).send('User not found');
+
+       const isMatch: boolean = await bcrypt.compare(password, user.password);
+
+       if(!isMatch) return res.status(400).send('Wrong password')
+
+       const token = await createAccessToken({ id: user._id });
+       
+       res.cookie('token', token);
+       return res.status(200).send(user);
     } catch (error) {
         return res.status(500).send('Error en el servidor');
     }
+};
+
+export const logoutUser: Handler = async (req: Request, res: Response) => {
+    res.cookie("token", "", {
+        expires: new Date(0),
+    });
+
+    return res.status(200);
 };
 
 export const deleteUser: Handler = async (req: Request, res: Response) => {

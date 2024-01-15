@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Header from './components/header/component'
-import Homepage from './views/homepage/component'
-import AboutUs from './views/about_us/component'
-import Ubication from './views/ubication/component'
-import Login from './views/login/component'
-import Footer from './components/footer/component'
-import Catalog from './views/catalog/component'
-import StandardCat from './views/catalog/standard-cat/component'
-import LuxuryCat from './views/catalog/luxury-cat/component'
-import TraditionalCat from './views/catalog/traditional-cat/component'
+import Header from './components/header/component';
+import Homepage from './views/homepage/component';
+import AboutUs from './views/about_us/component';
+import Ubication from './views/ubication/component';
+import Login from './views/login/component';
+import Footer from './components/footer/component';
+import Catalog from './views/catalog/component';
+import Room_Template from './views/catalog/room/component';
 
 function App() {
   return (
@@ -23,9 +21,7 @@ function App() {
             <Route path="/about_us" element={<AboutUs />} />
             <Route path="/ubication" element={<Ubication />} />
             <Route path="/rooms" element={<Catalog />} />
-            <Route path="/rooms/standard_cat" element={<StandardCat />} />
-            <Route path="/rooms/luxury_cat" element={<LuxuryCat />} />
-            <Route path="/rooms/traditional_cat" element={<TraditionalCat />} />
+            <Route path="/rooms/Room_Template" element={<Room_Template />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </div>

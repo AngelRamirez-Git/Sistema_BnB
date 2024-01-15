@@ -1,7 +1,42 @@
-.image-container .image {
-    width: 80%; 
-    margin-left: 100px;
+body {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+    margin: 0;
+    padding: 0;
+  }
+  
+  .image-container .image {
+    width: 100%;
+    max-width: auto;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .rooms-container {
+    max-width: 100%; 
+  }
 
-    height: auto; 
-}
+  .type_rooms-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .type_rooms-container div {
+    text-align: center;
+  }
+  
+  .room-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
 
+  .column {
+    margin-top: 10px;
+  }

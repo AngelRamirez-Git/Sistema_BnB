@@ -1,13 +1,15 @@
 import { Router } from 'express';
-import { getUsers, createUser, getUserByEmail, deleteUser } from '../services/user/service';
+import { getUsers, registerUser, loginUser, deleteUser } from '../services/user/service';
 import { getRooms, createRoom, updateRoom, updateRoomToUser, getRoomByType } from '../services/room/service';
 
 const router: Router = Router();
 
 // Rutas de usuarios
 router.get('/users', getUsers);
-router.post('/user', createUser);
-router.get('/user/:email', getUserByEmail);
+router.post('/register', registerUser);
+router.post('/login', loginUser);
+router.post('/logout', loginUser);
+
 router.delete('/delete', deleteUser);
 
 // Rutas de habitaciones
