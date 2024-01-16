@@ -13,7 +13,7 @@
   display: flex;
   align-items: center; 
   justify-content: center; 
-  height: 95%; 
+  
 }
 
 .room_image-container img {
@@ -21,6 +21,7 @@
   width: 95%;
   max-width: none;
   border-radius: 8px;
+  margin-top: none;
 }
 
 .room_lore-container {
@@ -35,4 +36,5 @@
   overflow: auto;
   height: 95%;
   margin-right: 10px;
+  text-align: justify;
 }

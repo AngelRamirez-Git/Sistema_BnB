@@ -8,7 +8,9 @@ import Ubication from './views/ubication/component';
 import Login from './views/login/component';
 import Footer from './components/footer/component';
 import Catalog from './views/catalog/component';
-import Room_Template from './views/catalog/room/component';
+import Deluxe from './views/catalog/deluxe/component';
+import Standard from './views/catalog/standard/component';
+import Traditional from './views/catalog/traditional/component';
 
 function App() {
   return (
@@ -21,8 +23,10 @@ function App() {
             <Route path="/about_us" element={<AboutUs />} />
             <Route path="/ubication" element={<Ubication />} />
             <Route path="/rooms" element={<Catalog />} />
-            <Route path="/rooms/Room_Template" element={<Room_Template />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/deluxe" element={<Deluxe />} />
+            <Route path="/traditional" element={<Traditional />} />
+            <Route path="/standard" element={<Standard />} />
           </Routes>
         </div>
         <Footer/>

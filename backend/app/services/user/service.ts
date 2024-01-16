@@ -1,11 +1,8 @@
 import  { Handler, Request, Response} from 'express';
-import { UserMongo, UserSchema } from '../../models/user'
-import { RoomMongo } from '../../models/room'
+import { UserMongo, UserSchema } from '../../models/user';
+import { RoomMongo } from '../../models/room';
 import { createAccessToken } from '../../libs/jwt';
-import * as bcrypt from 'bcrypt-ts';
-
-
-import  util from 'util';
+//import * as bcrypt from 'bcrypt-ts';
 
 export const getUsers: Handler = async (req: Request, res: Response) => {
     const users = await UserMongo.find();
@@ -18,7 +15,7 @@ export const registerUser: Handler = async (req: Request, res: Response) => {
         if (existingUser) {
             return res.status(400).send('El correo electrónico ya está registrado');
         }
-        const passwordHash = await bcrypt.hash(req.body.password, 10);
+        const passwordHash = req.body.password; //await bcrypt.hash(req.body.password, 10);
 
         
         const user = new UserMongo({
@@ -48,12 +45,12 @@ export const loginUser: Handler = async (req: Request, res: Response) => {
 
        if(!user) return res.status(404).send('User not found');
 
-       const isMatch: boolean = await bcrypt.compare(password, user.password);
+       const isMatch: boolean = password == user.password;//await bcrypt.compare(password, user.password);
 
-       if(!isMatch) return res.status(400).send('Wrong password')
+       if(!isMatch) return res.status(404).send('Wrong password');
 
        const token = await createAccessToken({ id: user._id });
-       
+       console.log('token=',token);
        res.cookie('token', token);
        return res.status(200).send(user);
     } catch (error) {

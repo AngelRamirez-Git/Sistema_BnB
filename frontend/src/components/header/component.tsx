@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
 import logo from './logo.jpg';
@@ -7,8 +7,11 @@ import information from './information_icon.png';
 import ubication from './ubication_icon.png';
 import login from './login_icon.png';
 import homepage from './home_icon.png';
+import AuthContext from '../../context/AuthProvider';
 
 export const Header: FC = () => {
+  const { auth } = useContext(AuthContext);
+
   return (
     <header className="header-container">
       <div className="logo-container">
@@ -49,12 +52,21 @@ export const Header: FC = () => {
             </Link>
           </li>
           <li>
+            {auth == null ?  
             <Link to={"/login"}>
               <div className="menu-item">
                 <img src={login} alt="Iniciar Sesión" className="mini-logo"/>
                 <span>Iniciar Sesión</span>
               </div>
             </Link>
+            : 
+            <Link to={"/logout"}>
+              <div className="menu-item">
+                <img src={login} alt="Iniciar Sesión" className="mini-logo"/>
+                <span>Cerrar Sesion</span>
+              </div>
+            </Link> 
+            }
           </li>
         </ul>
       </nav>

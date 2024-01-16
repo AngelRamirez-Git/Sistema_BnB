@@ -1,0 +1,37 @@
+.room-container {
+  display: flex;
+  align-items: flex-start; /* Asegura que los hijos se alineen en la parte superior */
+  justify-content: center;
+  width: 1000px;
+  overflow: hidden;
+  margin: auto; /* Centrado horizontal */
+  margin-top: 50px; /* Espaciado superior */
+}
+
+.room_image-container {
+  flex: 0 1 70%;
+  display: flex;
+  align-items: flex-start; /* Alineación al inicio para la imagen */
+  justify-content: center;
+  height: auto;
+}
+
+.room_image-container img {
+  max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+  border-radius: 8px;
+}
+
+.room_lore-container {
+  flex: 0 1 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alineación al inicio para el texto */
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  height: auto; /* Altura automática según el contenido */
+  text-align: justify;
+}

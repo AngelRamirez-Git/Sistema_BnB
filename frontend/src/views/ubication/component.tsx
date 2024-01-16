@@ -13,7 +13,7 @@ export const Ubication: FC = () => {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Cambia la imagen cada 3 segundos
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [currentIndex, images.length]);
@@ -40,10 +40,8 @@ export const Ubication: FC = () => {
       <div className="activities-lore">
         <h2>Actividades cerca de nosotros</h2>
         <div className="carousel">
-          {/* Mostrar solo la imagen actual basada en currentIndex */}
           <img src={images[currentIndex]} alt="Activity" />
         </div>
-        {/* Aquí puedes añadir más contenido relacionado con las actividades si es necesario */}
       </div>
     </div>
   );
